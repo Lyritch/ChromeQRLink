@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page QR</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink-50: #FFF0F5;
+      --pink-100: #FFE4EE;
+      --pink-200: #FFB6C1;
+      --pink-300: #FFA0B4;
+      --text-primary: #D14D72;
+      --text-secondary: #FFA0B4;
+    }
+
+    body {
+      width: 800px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .container {
+      padding: 32px;
+      width: 100%;
+    }
+
+    h1 {
+      color: var(--text-primary);
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    #qr-container {
+      background: var(--pink-50);
+      border: 1px solid var(--pink-100);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+      transition: all 0.3s ease;
+      border-radius: 20px;
+    }
+
+    #qr-container:hover {
+      background: var(--pink-100);
+      transform: translateY(-2px);
+    }
+
+    #qr-code {
+      width: auto;
+      height: auto;
+      max-width: 450px;
+      max-height: 450px;
+      display: block;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 4px 6px rgba(209, 77, 114, 0.1));
+    }
+
+    #qr-code:hover {
+      transform: scale(1.02);
+      filter: drop-shadow(0 6px 8px rgba(209, 77, 114, 0.15));
+    }
+
+    .info-text {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-top: 16px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 840px) {
+      body {
+        width: 100%;
+      }
+      
+      .container {
+        padding: 24px;
+      }
+
+      #qr-container {
+        padding: 32px;
+        min-height: 400px;
+      }
+
+      #qr-code {
+        max-width: 350px;
+        max-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Qr Code</h1>
+    <div id="qr-container">
+      <img id="qr-code" src="" alt="Generated QR Code" />
+    </div>
+    <div class="info-text">Kodu taratarak mobilde ziyaret edebilirsin. ✨</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
