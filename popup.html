@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <title>Page QR</title>
@@ -17,6 +17,7 @@
       --pink-300: #FFA0B4;
       --text-primary: #D14D72;
       --text-secondary: #FFA0B4;
+      --shadow: rgba(209, 77, 114, 0.1);
     }
 
     body {
@@ -30,6 +31,7 @@
     .container {
       padding: 32px;
       width: 100%;
+      position: relative;
     }
 
     h1 {
@@ -51,6 +53,7 @@
       min-height: 500px;
       transition: all 0.3s ease;
       border-radius: 20px;
+      position: relative;
     }
 
     #qr-container:hover {
@@ -65,12 +68,12 @@
       max-height: 450px;
       display: block;
       transition: transform 0.3s ease;
-      filter: drop-shadow(0 4px 6px rgba(209, 77, 114, 0.1));
+      filter: drop-shadow(0 4px 6px var(--shadow));
     }
 
     #qr-code:hover {
       transform: scale(1.02);
-      filter: drop-shadow(0 6px 8px rgba(209, 77, 114, 0.15));
+      filter: drop-shadow(0 6px 8px var(--shadow));
     }
 
     .info-text {
@@ -79,6 +82,60 @@
       font-size: 14px;
       margin-top: 16px;
       font-weight: 500;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .action-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--pink-200);
+      color: white;
+    }
+
+    .action-button:hover {
+      background: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .url-display {
+      background: var(--pink-50);
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--text-primary);
+      word-break: break-all;
+      text-align: center;
+      border: 1px dashed var(--pink-200);
+    }
+
+    .copy-tooltip {
+      position: absolute;
+      background: var(--text-primary);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .copy-tooltip.show {
+      opacity: 1;
     }
 
     @media (max-width: 840px) {
@@ -104,11 +161,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Qr Code</h1>
+    <h1>Sayfa QR Kodu</h1>
     <div id="qr-container">
-      <img id="qr-code" src="" alt="Generated QR Code" />
+      <img id="qr-code" src="" alt="Oluşturulan QR Kod" />
+    </div>
+    <div class="url-display" id="current-url"></div>
+    <div class="button-container">
+      <button class="action-button" id="download-qr">QR Kodu İndir</button>
+      <button class="action-button" id="copy-url">URL Kopyala</button>
     </div>
     <div class="info-text">Kodu taratarak mobilde ziyaret edebilirsin. ✨</div>
+    <div class="copy-tooltip" id="copy-tooltip">Kopyalandı!</div>
   </div>
   <script src="popup.js"></script>
 </body>
